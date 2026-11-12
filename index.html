@@ -1,0 +1,967 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>متجري</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+ 
+         <!--رابط الأيقونات (Font Awesome)--> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded">
+
+</head>
+
+<body>
+
+    <!-- الهيدر -->
+    <header class="header">
+
+        <button class="menu-btn" id="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <div class="logo">CARE PLUS</div>
+
+        <nav class="nav">
+
+            <button onclick="show_home()">
+                الرئيسية
+            </button>
+
+            <button onclick="show_cart()">
+                <i class="fa-solid fa-cart-shopping"></i>
+                السلة
+                <span id="cart_count">0</span>
+            </button>
+            <!--dark mood-->
+<button class="dark-btn" id="dark-btn" type="button">
+    <i class="fa-solid fa-moon"></i>
+</button>
+        </nav>
+
+    </header>
+
+
+    <!-- خلفية القائمة الجانبية -->
+    <div class="menu-overlay" id="menu-overlay"></div>
+
+
+    <!-- القائمة الجانبية -->
+    <aside class="side-menu" id="side-menu">
+
+        <div class="menu-head">
+
+            <h3>حسابي وخدماتي</h3>
+
+            <button id="close-menu">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <!-- بيانات المستخدم -->
+        <div class="menu-user">
+
+            <i class="fa-solid fa-circle-user"></i>
+
+            <div>
+                <h4>أهلاً بيك</h4>
+                <p>سجل الدخول للاستفادة من خدماتنا</p>
+            </div>
+
+        </div>
+
+
+        <!-- روابط القائمة -->
+        <div class="menu-links">
+
+            <button class="side-link" data-page="prescription_page">
+                <i class="fa-solid fa-file-prescription"></i>
+                <span>الروشتات الطبية</span>
+            </button>
+
+            <button class="side-link" data-page="health_page">
+                <i class="fa-solid fa-heart-pulse"></i>
+                <span>الملف الصحي</span>
+            </button>
+
+            <button class="side-link" id="login-link" data-page="login_page">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span>تسجيل الدخول</span>
+            </button>
+
+            <button class="side-link" id="profile-link" data-page="profile_page" hidden>
+                <i class="fa-solid fa-user"></i>
+                <span>الملف الشخصي</span>
+            </button>
+
+            <button class="side-link" id="logout-btn" hidden>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>تسجيل الخروج</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- محتوى الموقع -->
+    <main class="container">
+
+
+        <!-- ================= الرئيسية ================= -->
+        <section id="home_page" class="page active">
+
+            <div class="hero">
+
+                <h1>اكتشفي منتجاتك المفضلة</h1>
+
+                <p>
+                    اختاري القسم المناسب وشوفي مجموعة المنتجات المتاحة
+                </p>
+
+            </div>
+
+
+            <h2 class="section_title">
+                المنتجات الأكثر طلباً
+            </h2>
+
+
+            <div class="category_grid">
+
+
+                <!-- قسم كريم التخسيس -->
+                <div class="category_card" onclick="show_category('slim')">
+
+                    <img src="images/كريم سلوليت.jpeg" alt="كريم التخسيس">
+
+                    <div class="category_info">
+
+                        <h3>كريم التخسيس</h3>
+
+                        <p>اكتشفي منتجات العناية بالجسم</p>
+
+                        <span>
+                            تسوقي الآن
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- قسم كريم البشرة -->
+                <div class="category_card" onclick="show_category('skin')">
+
+                    <img src="images/كريم بشرة.jpeg" alt="كريم البشرة">
+
+                    <div class="category_info">
+
+                        <h3>كريم البشرة</h3>
+
+                        <p>منتجات للعناية ببشرتك</p>
+
+                        <span>
+                            تسوقي الآن
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- قسم الشاور جل -->
+                <div class="category_card" onclick="show_category('shower')">
+
+                    <img src="images/شاور.jpeg" alt="الشاور جل">
+
+                    <div class="category_info">
+
+                        <h3>الشاور جل</h3>
+
+                        <p>اختاري منتجات النظافة اليومية</p>
+
+                        <span>
+                            تسوق الآن
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+<!-- بداية سكشن الإحصائيات (خاص بالصفحة الرئيسية) -->
+<section id="stats-section" class="stats-container home-only">
+    
+    <h2 class="stats-main-title">نحن نغطي كل احتياجاتك من الصيدلية</h2>
+
+    <div class="stats-grid">
+        
+        <!-- العنصر الأول -->
+        <div class="stat-box">
+            <div class="stat-icon">
+                <i class="fa-solid fa-headset"></i>
+            </div>
+            <h3 class="stat-number">24/7</h3>
+            <p class="stat-text">اسأل صيدلي</p>
+        </div>
+
+        <!-- العنصر الثاني -->
+        <div class="stat-box">
+            <div class="stat-icon">
+                <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <h3 class="stat-number">25</h3>
+            <p class="stat-text">مدينة</p>
+        </div>
+
+        <!-- العنصر الثالث -->
+        <div class="stat-box">
+            <div class="stat-icon">
+                <i class="fa-solid fa-capsules"></i>
+            </div>
+            <h3 class="stat-number">+41K</h3>
+            <p class="stat-text">منتج مرخص</p>
+        </div>
+
+        <!-- العنصر الرابع -->
+        <div class="stat-box">
+            <div class="stat-icon">
+                <i class="fa-solid fa-prescription-bottle-medical"></i>
+            </div>
+            <h3 class="stat-number">+1000</h3>
+            <p class="stat-text">صيدلية</p>
+        </div>
+
+    </div>
+</section>
+<!-- نهاية سكشن الإحصائيات -->
+
+<!-- بداية سكشن آراء العملاء -->
+<section id="testimonials-section" class="testimonials-container">
+    
+    <!-- العنوان الرئيسي -->
+    <h2 class="testimonials-title">ما رأي عملاء CARE PLUSعن خدماتنا</h2>
+
+    <!-- حاوية السلايدر -->
+    <div class="testimonials-slider-wrapper">
+        
+        <!-- سهم اليسار -->
+        <button class="slider-btn prev-btn" id="prevBtn"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <!-- حاوية الكروت -->
+        <div class="testimonials-track" id="testimonialsTrack">
+            
+            <!-- الرأي الأول -->
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <p class="review-text">تطبيق رائع وخدمة متميزة صراحة دكاترة قمة في الذوق والمعاملة الراقية. كما أن بجيندوا أوي بيوفرلي المنتجات بسرعة بدل ما ألف وأدور على الصيدليات.</p>
+                <div class="reviewer-info">
+                    <h4 class="reviewer-name">عصفور اصفر</h4>
+                    <span class="review-date">26/9/2021</span>
+                </div>
+            </div>
+
+            <!-- الرأي الثاني -->
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <p class="review-text">خدمة ممتازة وتوصيل في الميعاد بالكميات المطلوبة والحسم شكرا لتعاونكم وبالتوفيق.</p>
+                <div class="reviewer-info">
+                    <h4 class="reviewer-name">عبير الشحات</h4>
+                    <span class="review-date">12/10/2021</span>
+                </div>
+            </div>
+
+            <!-- الرأي الثالث -->
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <p class="review-text" dir="ltr">frankly, it is an excellent and useful site. many excellent pharmacist who excel in their profession write article full of useful information.</p>
+                <div class="reviewer-info">
+                    <h4 class="reviewer-name">mohamed hassan</h4>
+                    <span class="review-date">15/11/2021</span>
+                </div>
+            </div>
+
+            <!--الراي الرابع  -->
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <p class="review-text">أفضل تطبيق صيدلية استخدمته حتى الآن، الأسعار مناسبة والاستشارات الطبية مفيدة جداً.</p>
+                <div class="reviewer-info">
+                    <h4 class="reviewer-name">أحمد محمود</h4>
+                    <span class="review-date">05/01/2022</span>
+                </div>
+            </div>
+
+            <!-- الرأي الخامس  -->
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <p class="review-text">التوصيل سريع جداً، وفريق خدمة العملاء متعاون ومحترم. أنصح الجميع بتجربة التطبيق.</p>
+                <div class="reviewer-info">
+                    <h4 class="reviewer-name">سارة علي</h4>
+                    <span class="review-date">20/02/2022</span>
+                </div>
+            </div>
+
+            <!-- الرأي السادس -->
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <p class="review-text">وفر عليا وقت ومجهود كبير، بطلب الدوا وأنا في البيت وبيوصلني بسرعة. شكراً ليكم.</p>
+                <div class="reviewer-info">
+                    <h4 class="reviewer-name">محمد إبراهيم</h4>
+                    <span class="review-date">10/03/2022</span>
+                </div>
+            </div>
+
+            <!-- الرأي السابع -->
+            <div class="testimonial-card">
+                <i class="fa-solid fa-quote-right quote-icon"></i>
+                <p class="review-text">الموقع سهل الاستخدام جداً والواجهة مريحة للعين، وتجربة الشراء سلسة للغاية.</p>
+                <div class="reviewer-info">
+                    <h4 class="reviewer-name">نورهان حسن</h4>
+                    <span class="review-date">15/04/2022</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- سهم اليمين -->
+        <button class="slider-btn next-btn" id="nextBtn"><i class="fa-solid fa-chevron-left"></i></button>
+
+    </div>
+</section>
+
+        </section>
+
+
+
+        <!-- ================= صفحة الأقسام ================= -->
+        <section id="category_page" class="page">
+<!--
+            <button class="back_btn" onclick="show_home()">
+                <i class="fa-solid fa-arrow-right"></i>
+                رجوع للأقسام
+            </button>-->
+
+
+            <h2 id="category_title" class="section_title"></h2>
+
+
+            <div class="tools">
+
+                <input
+                    type="text"
+                    id="search_input"
+                    placeholder="ابحثي عن منتج..."
+                    oninput="search_products()"
+                >
+
+
+                <select id="sort_select" onchange="sort_products()">
+
+                    <option value="default">ترتيب المنتجات</option>
+
+                    <option value="low">
+                        السعر من الأقل للأعلى
+                    </option>
+
+                    <option value="high">
+                        السعر من الأعلى للأقل
+                    </option>
+
+                    <option value="name">
+                        الاسم
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div id="product_grid" class="product_grid"></div>
+
+        </section>
+
+
+
+        <!-- ================= تفاصيل المنتج ================= -->
+        <section id="details_page" class="page">
+
+           <!--<button class="back_btn" onclick="back_to_category()">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+                رجوع للمنتجات
+
+            </button>--> 
+
+
+            <div id="product_details" class="details_box"></div>
+
+
+            <h2 class="section_title">
+                منتجات مشابهة
+            </h2>
+
+
+            <div id="related_grid" class="product_grid"></div>
+
+        </section>
+
+
+
+        <!-- ================= صفحة السلة ================= -->
+        <section id="cart_page" class="page">
+
+            <button class="back_btn" onclick="show_home()">
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+                متابعة التسوق
+
+            </button>
+
+
+            <h2 class="section_title">
+                سلة المشتريات
+            </h2>
+
+
+            <div id="cart_items"></div>
+
+
+            <div class="cart_summary">
+
+                <h3>ملخص الطلب</h3>
+
+                <p>
+                    الإجمالي:
+                    <strong id="cart_total">0</strong>
+                    جنيه
+                </p>
+
+
+                <button class="main_btn" onclick="checkout()">
+                    إتمام الطلب
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= صفحة الروشتات الطبية ================= -->
+       
+<!-- صفحة الروشتات الطبية -->
+<section id="prescription_page" class="page">
+
+    <div class="pres-box">
+
+        <button class="back_btn" onclick="show_home()">
+            <i class="fa-solid fa-arrow-right"></i>
+            رجوع
+        </button>
+
+        <div class="pres-head">
+            <div class="pres-icon">
+                <i class="fa-solid fa-file-prescription"></i>
+            </div>
+
+            <h2>الروشتات الطبية</h2>
+            <p>ارفعي صورة الروشتة واكتبي أي ملاحظات تخص طلبك</p>
+        </div>
+
+        <!-- اختيار الصور -->
+        <div class="pres-upload">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            <h3>اختاري صور الروشتة</h3>
+
+            <p>تقدري تختاري صورة أو أكتر من جهازك</p>
+
+            <label for="prescription_file" class="pres-choose">
+                <i class="fa-solid fa-image"></i>
+                اختيار الصور
+            </label>
+
+            <input
+                type="file"
+                id="prescription_file"
+                accept="image/*"
+                multiple
+                hidden
+            >
+
+            <label for="prescription_camera" class="pres-camera">
+                <i class="fa-solid fa-camera"></i>
+                تصوير الروشتة
+            </label>
+
+            <input
+                type="file"
+                id="prescription_camera"
+                accept="image/*"
+                capture="environment"
+                hidden
+            >
+
+        </div>
+
+        <!-- الصور المختارة -->
+        <div class="pres-gallery-box">
+
+            <h3>الصور المرفوعة</h3>
+
+            <p id="prescription_empty">
+                لسه مفيش صور. اختاري صورة الروشتة علشان تظهر هنا.
+            </p>
+
+            <div id="prescription_gallery" class="pres-gallery"></div>
+
+        </div>
+
+        <!-- التعليقات -->
+        <div class="pres-notes">
+
+            <label for="prescription_notes">
+                <i class="fa-solid fa-pen"></i>
+                ملاحظات وتعليقات (اختياري)
+            </label>
+
+            <textarea
+                id="prescription_notes"
+                rows="5"
+                placeholder="اكتبي أي ملاحظات تخص الروشتة أو الأدوية أو ميعاد التوصيل..."
+            ></textarea>
+
+        </div>
+
+        <p class="error" id="prescription_error"></p>
+
+        <button type="button" class="main_btn" id="prescription_btn">
+            <i class="fa-solid fa-paper-plane"></i>
+            إرسال الروشتة
+        </button>
+
+        <p id="prescription_success" class="pres-success"></p>
+
+    </div>
+
+
+    <!-- نافذة عرض الصورة بحجم كبير -->
+    <div id="prescription_viewer" class="pres-viewer">
+
+        <button type="button" id="prescription_close" class="pres-close">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <img id="prescription_large" src="" alt="صورة الروشتة">
+
+    </div>
+
+</section>
+
+
+
+
+        <!-- ================= صفحة الملف الصحي ================= -->
+        <section id="health_page" class="page">
+
+            <div class="auth">
+
+                <button class="back_btn" onclick="show_home()">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    رجوع
+                </button>
+
+
+                <div class="auth-icon">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+
+
+                <h2>الملف الصحي</h2>
+
+                <p>
+                    تابعي بياناتك الصحية وملفاتك الطبية من مكان واحد
+                </p>
+
+
+                <div class="health-info">
+
+                    <p>
+                        <i class="fa-solid fa-user"></i>
+                        بيانات المستخدم
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-file-prescription"></i>
+                        الروشتات الطبية
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-notes-medical"></i>
+                        السجل الصحي
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= صفحة تسجيل الدخول ================= -->
+        <section id="login_page" class="page">
+
+            <div class="auth">
+
+                <button class="back_btn" onclick="show_home()">
+                    رجوع
+                </button>
+
+
+                <div class="auth-icon">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </div>
+
+
+<h2>CARE PLUS اهلا بيك في </h2>
+                <p>
+                    سجلي رقم موبايلك للمتابعة
+                </p>
+
+
+                <label for="phone">
+                    رقم الموبايل
+                </label>
+
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="01xxxxxxxxx"
+                    maxlength="11"
+                >
+
+
+                <p class="error" id="phone-error"></p>
+
+
+                <button class="main_btn" id="phone-btn">
+                    متابعة
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= صفحة كود التحقق ================= -->
+        <section id="otp_page" class="page">
+
+            <div class="auth">
+
+                <div class="auth-icon">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+
+                <h2>تأكيد رقم الموبايل</h2>
+
+                <p>
+                    اكتبي كود التحقق المكون من 6 أرقام
+                </p>
+
+
+                <input
+                    type="text"
+                    id="otp"
+                    placeholder="000000"
+                    maxlength="6"
+                    inputmode="numeric"
+                >
+
+
+                <p class="error" id="otp-error"></p>
+
+
+                <button class="main_btn" id="otp-btn">
+                    تأكيد
+                </button>
+
+
+                <button class="text-btn" id="resend">
+                    إعادة إرسال الكود
+                </button>
+
+
+                <button class="text-btn" onclick="show_page('login_page')">
+                    تغيير رقم الموبايل
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= صفحة البيانات الشخصية ================= -->
+        <section id="register_page" class="page">
+
+            <div class="auth">
+
+                <div class="auth-icon">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+
+
+                <h2>استكملي بياناتك</h2>
+
+                <p>
+                    علشان نقدر نخدمك بشكل أفضل
+                </p>
+
+
+                <label for="name">
+                    الاسم بالكامل
+                </label>
+
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="اكتبي اسمك"
+                >
+
+
+                <label for="email">
+                    البريد الإلكتروني
+                </label>
+
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="example@gmail.com"
+                >
+
+
+                <p class="error" id="register-error"></p>
+
+
+                <button class="main_btn" id="save-btn">
+                    حفظ البيانات
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= صفحة الملف الشخصي ================= -->
+        <section id="profile_page" class="page">
+
+            <div class="auth">
+
+                <div class="auth-icon">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+
+
+                <h2>الملف الشخصي</h2>
+
+
+                <p id="user-name"></p>
+
+                <p id="user-phone"></p>
+
+                <p id="user-email"></p>
+
+
+                <button class="main_btn" onclick="show_home()">
+                    الرئيسية
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+<!-- نهاية سكشن آراء العملاء -->
+<!-- بداية الفوتر -->
+<footer class="main-footer">
+    <div class="footer-container">
+        
+        <!-- العمود الأول: اللوجو والوصف -->
+        <div class="footer-col brand-col">
+            <div class="footer-logo" style="direction: ltr; justify-content: flex-end;">
+                <i class="fa-solid fa-capsules"></i> CARE PLUS
+            </div>
+            <p class="footer-desc">
+                اطلب الآن جميع احتياجاتك من الصيدلية بسهولة. اطلب أدويتك من صيدلية أو أون لاين في مصر.
+            </p>
+            <p class="footer-tax">رقم التسجيل الضريبي: 672-859-718</p>
+            
+            <!-- أيقونات السوشيال ميديا -->
+            <div class="footer-socials">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+
+        <!-- العمود الثاني: المزيد عنا -->
+        <div class="footer-col">
+            <h4>المزيد عنا</h4>
+            <ul class="footer-links">
+                <li><a href="#">عن CARE PLUS</a></li>
+                <li><a href="#">Our Impact</a></li>
+                <li><a href="#">المدونة</a></li>
+                <li><a href="#">تواصل معنا</a></li>
+                <li><a href="#">هل تملك صيدلية ؟</a></li>
+            </ul>
+        </div>
+
+        <!-- العمود الثالث: سهلناها عليك -->
+        <div class="footer-col">
+            <h4>سهلناها عليك</h4>
+            <ul class="footer-links">
+                <li><a href="#">إرسال الروشتة</a></li>
+                <li><a href="#">الروشتة الشهرية</a></li>
+            </ul>
+            
+            <h4 class="mt-20">أيضاً في CARE PLUS</h4>
+            <ul class="footer-links">
+                <li><a href="#">Supply</a></li>
+                <li><a href="#">Bi-Hub</a></li>
+            </ul>
+        </div>
+
+        <!-- العمود الرابع: حمل التطبيق -->
+        <div class="footer-col app-col">
+            <h4>حمل التطبيق</h4>
+            <div class="app-buttons">
+                <a href="#" class="app-btn">
+                    <i class="fa-brands fa-apple"></i>
+                    <div>
+                        <span>Download on the</span>
+                        <strong>App Store</strong>
+                    </div>
+                </a>
+                <a href="#" class="app-btn">
+                    <i class="fa-brands fa-google-play"></i>
+                    <div>
+                        <span>GET IT ON</span>
+                        <strong>Google Play</strong>
+                    </div>
+                </a>
+                <a href="#" class="app-btn">
+                    <i class="fa-solid fa-mobile-screen"></i>
+                    <div>
+                        <span>EXPLORE IT ON</span>
+                        <strong>AppGallery</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- الشريط السفلي (الحقوق) -->
+    <div class="footer-bottom">
+        <div class="footer-bottom-container">
+            <div class="footer-copy">
+                © 2026 CARE PLUS. كل الحقوق محفوظة
+            </div>
+            <div class="footer-policies">
+                <a href="#">شروط الاستخدام</a> | <a href="#">سياسات الخصوصية</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- زر الرجوع لأعلى -->
+    <a href="#" class="scroll-top"><i class="fa-solid fa-chevron-up"></i></a>
+</footer>
+<!-- نهاية الفوتر -->
+ <!--بداية الشات بوت -->
+<div class="chatbot-popup">
+    <!--chatbot-header-->
+     <div class="chatbot-header">
+        <div class="header-info">
+        <svg class="chatbot-logo" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+  <path d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"></path>
+</svg>
+<h2 class="logo-text">CARE PLUS </h2>
+        </div>
+<button id="close-chatbot" class="material-symbols-rounded">arrow_downward_alt
+</button>
+     </div>
+  <!--chatbot-body-->
+<div class="chat-body">
+<div class="message bot-message">
+  <svg class="bot-avatar" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1024 1024">
+  <path d="M738.3 287.6H285.7c-59 0-106.8 47.8-106.8 106.8v303.1c0 59 47.8 106.8 106.8 106.8h81.5v111.1c0 .7.8 1.1 1.4.7l166.9-110.6 41.8-.8h117.4l43.6-.4c59 0 106.8-47.8 106.8-106.8V394.5c0-59-47.8-106.9-106.8-106.9zM351.7 448.2c0-29.5 23.9-53.5 53.5-53.5s53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5-53.5-23.9-53.5-53.5zm157.9 267.1c-67.8 0-123.8-47.5-132.3-109h264.6c-8.6 61.5-64.5 109-132.3 109zm110-213.7c-29.5 0-53.5-23.9-53.5-53.5s23.9-53.5 53.5-53.5 53.5 23.9 53.5 53.5-23.9 53.5-53.5 53.5zM867.2 644.5V453.1h26.5c19.4 0 35.1 15.7 35.1 35.1v121.1c0 19.4-15.7 35.1-35.1 35.1h-26.5zM95.2 609.4V488.2c0-19.4 15.7-35.1 35.1-35.1h26.5v191.3h-26.5c-19.4 0-35.1-15.7-35.1-35.1zM561.5 149.6c0 23.4-15.6 43.3-36.9 49.7v44.9h-30v-44.9c-21.4-6.5-36.9-26.3-36.9-49.7 0-28.6 23.3-51.9 51.9-51.9s51.9 23.3 51.9 51.9z"></path>
+</svg>
+<div class="message-text"> </div>
+</div>
+
+</div>
+<!---->
+  <!--chatbot-footer-->
+  <div class="chat-footer">
+    <form action="#" class="chat-form">
+      <textarea placeholder="message...." class="message-input" required></textarea>
+
+<div class="chat-controls">
+<button type="submit" id="send-message" class="send-btn">
+    <span class="material-symbols-rounded">send</span>
+</button>
+</div>
+
+    </form>
+  </div>
+ </div>
+
+
+
+
+
+    <!-- ملف JavaScript -->
+    <script src="script.js"></script>
+
+
+    
+
+</body>
+
+</html>
